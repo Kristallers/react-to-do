@@ -11,7 +11,7 @@ const port = 3000;
 const main = async () => {
   try {
     await sequelize.authenticate();
-    console.log("Connection has been established successfully.");
+    console.log("Connection has been established successfully!");
     await sequelize.sync({ force: false });
     console.log("Models synchronized successfully.");
   } catch (error) {
