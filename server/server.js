@@ -6,7 +6,7 @@ const tasksRouter = require("./routes/task.routes");
 const sequelize = require("./models/index");
 
 const app = express();
-const port = 3000;
+const port = 5000;
 
 const main = async () => {
 	try {
