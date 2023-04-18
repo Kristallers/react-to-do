@@ -1,0 +1,16 @@
+.task {
+    background-color: #29a674;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.task-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.task-description {
+    font-size: 1rem;
+}
