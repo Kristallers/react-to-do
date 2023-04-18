@@ -1,6 +1,5 @@
-import "./App.css";
 import React, { useEffect, useState } from "react";
-
+import { SingleTask } from "./components/Single_Task/singleTask";
 const App = () => {
 	const [backendData, setBackendData] = useState([{}]);
 
@@ -13,8 +12,13 @@ const App = () => {
 	}, []);
 	return (
 		<>
-			<h1>Hello</h1>
-			<p>{JSON.stringify(backendData)}</p>
+			<h1>TO-DO Desk</h1>
+			{/* <p>{JSON.stringify(backendData)}</p> */}
+			{backendData.map((item) => (
+				<div key={item.id}>
+					<SingleTask title={item.title} description={item.description} />
+				</div>
+			))}
 		</>
 	);
 };
