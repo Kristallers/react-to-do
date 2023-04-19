@@ -14,3 +14,7 @@
 .task-description {
     font-size: 1rem;
 }
+
+.task-delete-btn {
+    padding: 1rem;
+}

@@ -13,7 +13,6 @@ const App = () => {
 	return (
 		<>
 			<h1>TO-DO Desk</h1>
-			{/* <p>{JSON.stringify(backendData)}</p> */}
 			{backendData.map((item) => (
 				<div key={item.id}>
 					<SingleTask title={item.title} description={item.description} />
