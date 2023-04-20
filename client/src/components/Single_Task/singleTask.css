@@ -1,5 +1,5 @@
 .task {
-    background-color: #29a674;
+    background-color: #88473498;
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-bottom: 20px;
@@ -17,4 +17,5 @@
 
 .task-delete-btn {
     padding: 1rem;
+    background-color: rgb(72, 37, 19);
 }
