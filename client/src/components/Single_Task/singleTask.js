@@ -8,7 +8,6 @@ export const SingleTask = (props) => {
             });
 
             if (response.ok) {
-                // Task was deleted successfully
                 props.setTasks(props.tasks.filter((task) => task.id !== taskID)); // Remove the deleted task from the state
 
                 console.log("to update ui");
