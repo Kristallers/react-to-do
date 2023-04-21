@@ -23,4 +23,52 @@ const postNewTask = async (req, res) => {
 		console.error(error);
 	}
 };
-module.exports = { postNewTask, getAllTasks };
+
+// const deleteTask = async (req, res) => {
+// 	const taskID = req.params.id
+// 	console.log("dddsadkajodjowajdiajfialfdnklnlnlkn");
+// }
+const deleteTask = async (req, res) => {
+	const taskID = req.params.id;
+	try {
+		const numDeleted = await TaskTable.destroy({ where: { id: taskID } });
+		if (numDeleted === 1) {
+			// Task was deleted successfully
+			res.sendStatus(204); // HTTP status code 204 means "No Content"
+		} else {
+			// Task was not found
+			res.sendStatus(404); // HTTP status code 404 means "Not Found"
+		}
+	} catch (error) {
+		console.error('Failed to delete task:', error);
+		res.sendStatus(500); // HTTP status code 500 means "Internal Server Error"
+	}
+}
+
+
+
+const updateTask = async (req, res) => {
+	const taskId = req.params.id;
+	const { title, description } = req.body;
+
+	try {
+		const task = await TaskTable.findOne({ where: { id: taskId } });
+
+		if (!task) {
+			res.status(404).send({ message: "Task not found!" });
+			return;
+		}
+
+		task.title = title || task.title;
+		task.description = description || task.description;
+
+		const updatedTask = await task.save();
+
+		res.send(updatedTask);
+	} catch (error) {
+		console.error(error);
+		res.status(500).send({ message: "Internal server error" });
+	}
+};
+
+module.exports = { postNewTask, getAllTasks, deleteTask, updateTask };
