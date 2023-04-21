@@ -45,4 +45,30 @@ const deleteTask = async (req, res) => {
 	}
 }
 
-module.exports = { postNewTask, getAllTasks, deleteTask };
+
+
+const updateTask = async (req, res) => {
+	const taskId = req.params.id;
+	const { title, description } = req.body;
+
+	try {
+		const task = await TaskTable.findOne({ where: { id: taskId } });
+
+		if (!task) {
+			res.status(404).send({ message: "Task not found!" });
+			return;
+		}
+
+		task.title = title || task.title;
+		task.description = description || task.description;
+
+		const updatedTask = await task.save();
+
+		res.send(updatedTask);
+	} catch (error) {
+		console.error(error);
+		res.status(500).send({ message: "Internal server error" });
+	}
+};
+
+module.exports = { postNewTask, getAllTasks, deleteTask, updateTask };
