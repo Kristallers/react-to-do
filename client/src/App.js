@@ -11,18 +11,22 @@ const App = () => {
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(formData),
 			});
-			// getData();
+			getData();
 		} catch (error) {
 			alert("you fucked up");
 		}
 	};
 
-	useEffect(() => {
+	const getData = () => {
 		fetch("/tasks")
 			.then((response) => response.json())
 			.then((data) => {
 				setBackendData(data);
 			});
+	};
+
+	useEffect(() => {
+		getData();
 	}, []);
 
 	return (
