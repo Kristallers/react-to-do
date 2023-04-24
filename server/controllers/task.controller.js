@@ -2,7 +2,6 @@ const TaskTable = require("../models/task.model");
 
 const getAllTasks = async (req, res) => {
 	try {
-		//CRUD functions return promise , thats why i put try,catch to resolve it ..
 		const allTasks = await TaskTable.findAll();
 		res.send(allTasks);
 		console.log(allTasks);
