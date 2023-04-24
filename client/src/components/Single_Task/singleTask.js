@@ -39,7 +39,6 @@ export const SingleTask = (props) => {
     }
     return (
         <div className="task" >
-
             {isEditing ? (
                 <form onSubmit={handleEdit}>
                     <input
@@ -65,9 +64,6 @@ export const SingleTask = (props) => {
                     <button onClick={() => handleDelete(props.id)}>Delete</button>
                 </>
             )}
-            {/* <h2 className="task-title">{props.title}</h2>
-            <p className="task-description">{props.description}</p>
-            <button className='task-delete-btn' onClick={() => handleDelete(props.id)}>Delete{props.key}</button> */}
         </div>
     )
 }
