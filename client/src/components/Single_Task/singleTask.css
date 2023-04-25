@@ -1,16 +1,16 @@
 .task {
-    background-color: #14084c;
+    background-color: #F4F2FF;
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-bottom: 20px;
-    padding: 10px;
+    padding: 1rem;
     width: 80%;
-    margin: auto;
+    border-radius: 12px;
 }
 
 .task-title {
     font-size: 2rem;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
 }
 
 .task-description {

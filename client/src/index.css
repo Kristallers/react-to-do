@@ -5,10 +5,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #2B1887;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: sans-serif, source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
@@ -17,6 +18,7 @@ code {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  padding: 1rem;
 }
 
 .tasks-wrapper {
@@ -32,9 +34,11 @@ code {
 }
 
 .material-symbols-outlined {
+  color: #2B1887;
+  font-size: 2rem;
   font-variation-settings:
     'FILL' 0,
-    'wght' 400,
+    'wght' 900,
     'GRAD' 0,
     'opsz' 48
 }
