@@ -1,9 +1,11 @@
 .task {
-    background-color: #88473498;
+    background-color: #14084c;
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-bottom: 20px;
     padding: 10px;
+    width: 80%;
+    margin: auto;
 }
 
 .task-title {
