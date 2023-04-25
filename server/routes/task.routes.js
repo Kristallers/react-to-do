@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router(); // not app , but a mini app, (middleware?)
-const { getAllTasks, postNewTask } = require("../controllers/task.controller");
+const { getAllTasks, postNewTask, deleteTask, updateTask, toggleComplete } = require("../controllers/task.controller");
 
 router.use(express.json());
 
@@ -12,17 +12,17 @@ router.post("/tasks", (req, res) => {
 	postNewTask(req, res);
 });
 
-router.get("/tasks/:id", (req, res) => {
-	res.send(`a task with id ${req.params.id}`);
-});
-
-
 router.put("/tasks/:id", (req, res) => {
-	res.send(`to update a task with ${req.params.id}`);
+	updateTask(req, res);
+
 });
+
+router.put("/tasks/:id/complete", (req, res) => {
+	toggleComplete(req, res);
+})
 
 router.delete("/tasks/:id", (req, res) => {
-	res.send("to delete a task ");
+	deleteTask(req, res);
 });
 
 router.delete("/tasks", (req, res) => {

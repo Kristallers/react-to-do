@@ -5,6 +5,8 @@ export const SingleTask = (props) => {
     const [isEditing, setIsEditing] = useState(false);
     const [title, setTitle] = useState(props.title);
     const [description, setDescription] = useState(props.description);
+    const [completed, setcompleted] = useState(props.completed);
+
     const handleEdit = async (e) => {
         e.preventDefault();
         try {
@@ -15,6 +17,8 @@ export const SingleTask = (props) => {
             });
             if (response.ok) {
                 setIsEditing(false);
+                setTitle(title); // set updated title
+                setDescription(description); // set updated description
             } else {
                 console.error(`Failed to update task ${props.id}`);
             }
@@ -37,9 +41,29 @@ export const SingleTask = (props) => {
             console.log(error);
         }
     }
+
+    const handleCheck = async (taskID, e) => {
+        e.preventDefault();
+        try {
+            setcompleted(e.target.checked)
+            const response = await fetch(`/tasks/${taskID}/complete`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ completed }),
+            });
+            if (response.ok) {
+                console.log("OK");
+            } else {
+                console.error(`Failed to update task ${taskID}`);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+        console.log(e.target.checked);
+    }
+
     return (
         <div className="task" >
-
             {isEditing ? (
                 <form onSubmit={handleEdit}>
                     <input
@@ -59,15 +83,13 @@ export const SingleTask = (props) => {
                 </form>
             ) : (
                 <>
-                    <h2 className="task-title">{props.title}</h2>
-                    <p className="task-description">{props.description}</p>
+                    <h2 className="task-title">{title}</h2>
+                    <p className="task-description">{description}</p>
                     <button onClick={() => setIsEditing(true)}>Edit</button>
                     <button onClick={() => handleDelete(props.id)}>Delete</button>
+                    <input id="checkbox" type='checkbox' onClick={(e) => handleCheck(props.id, e)}></input>
                 </>
             )}
-            {/* <h2 className="task-title">{props.title}</h2>
-            <p className="task-description">{props.description}</p>
-            <button className='task-delete-btn' onClick={() => handleDelete(props.id)}>Delete{props.key}</button> */}
         </div>
     )
 }

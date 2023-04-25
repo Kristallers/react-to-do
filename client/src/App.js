@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SingleTask } from "./components/Single_Task/singleTask";
+import './index.css'
 const App = () => {
 	const [backendData, setBackendData] = useState([{}]);
 
@@ -12,20 +13,26 @@ const App = () => {
 	}, []);
 
 	return (
-		<>
-			<h1>TO-DO Desk</h1>
+		<main className="tasks-wrapper">
+			<div className="header-todo">
+				<span className="material-symbols-outlined">
+					note
+				</span>
+				<h1 >TO-DO Desk</h1>
+
+			</div>
+
 			{backendData.map((item) => (
-				<div key={item.id}>
-					<SingleTask
-						id={item.id}
-						title={item.title}
-						description={item.description}
-						tasks={backendData}
-						setTasks={setBackendData}
-					/>
-				</div>
+				<SingleTask
+					key={item.id}
+					id={item.id}
+					title={item.title}
+					description={item.description}
+					tasks={backendData}
+					setTasks={setBackendData}
+				/>
 			))}
-		</>
+		</main>
 	);
 };
 export default App;
