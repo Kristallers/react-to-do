@@ -3,6 +3,7 @@
 ## Tech-Stack
 + [Sequlize](https://sequelize.org/)
 + React
++ REST 
 + postgres database
 + express
 
