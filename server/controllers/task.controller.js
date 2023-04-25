@@ -49,7 +49,6 @@ const deleteTask = async (req, res) => {
 const updateTask = async (req, res) => {
 	const taskId = req.params.id;
 	const { title, description } = req.body;
-
 	try {
 		const task = await TaskTable.findOne({ where: { id: taskId } });
 
@@ -70,4 +69,27 @@ const updateTask = async (req, res) => {
 	}
 };
 
-module.exports = { postNewTask, getAllTasks, deleteTask, updateTask };
+
+const toggleComplete = async (req, res) => {
+	const taskId = req.params.id;
+	const { completed } = req.body;
+	try {
+		const task = await TaskTable.findOne({ where: { id: taskId } });
+
+		if (!task) {
+			res.status(404).send({ message: "Task not found!" });
+			return;
+		}
+
+		task.completed = completed || task.completed;
+
+		const updatedTask = await task.save();
+
+		res.send(updatedTask);
+	} catch (error) {
+		console.error(error);
+		res.status(500).send({ message: "Internal server error" });
+	}
+}
+
+module.exports = { postNewTask, getAllTasks, deleteTask, updateTask, toggleComplete };

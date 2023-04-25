@@ -5,6 +5,7 @@ export const SingleTask = (props) => {
     const [isEditing, setIsEditing] = useState(false);
     const [title, setTitle] = useState(props.title);
     const [description, setDescription] = useState(props.description);
+    const [completed, setcompleted] = useState(props.completed);
 
     const handleEdit = async (e) => {
         e.preventDefault();
@@ -40,6 +41,27 @@ export const SingleTask = (props) => {
             console.log(error);
         }
     }
+
+    const handleCheck = async (taskID, e) => {
+        e.preventDefault();
+        try {
+            setcompleted(e.target.checked)
+            const response = await fetch(`/tasks/${taskID}/complete`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ completed }),
+            });
+            if (response.ok) {
+                console.log("OK");
+            } else {
+                console.error(`Failed to update task ${taskID}`);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+        console.log(e.target.checked);
+    }
+
     return (
         <div className="task" >
             {isEditing ? (
@@ -65,6 +87,7 @@ export const SingleTask = (props) => {
                     <p className="task-description">{description}</p>
                     <button onClick={() => setIsEditing(true)}>Edit</button>
                     <button onClick={() => handleDelete(props.id)}>Delete</button>
+                    <input id="checkbox" type='checkbox' onClick={(e) => handleCheck(props.id, e)}></input>
                 </>
             )}
         </div>
