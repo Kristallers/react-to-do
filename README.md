@@ -15,3 +15,6 @@
 | PUT | api/tasks/:id      | Update task by `id `    |
 | DELETE | api/tasks/:id     | Delete task by `id`   |
 | DELETE | api/tasks      | Delete all tasks    |
+
+## Links
++ [Figma design](https://www.figma.com/file/TNYTyJst6WFmUmxElGtSKf/To-Do-List-Kanban-(Community)?node-id=1%3A21&t=AJ4vJEQNx3MlhwLt-1)
