@@ -64,33 +64,34 @@ export const SingleTask = (props) => {
     }
 
     return (
-        <div className="task" >
-            {isEditing ? (
-                <form onSubmit={handleEdit}>
-                    <input
-                        type="text"
-                        placeholder="Task title"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Task description"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
-                    <button type="submit">Save</button>
-                    <button onClick={() => setIsEditing(false)}>Cancel</button>
-                </form>
-            ) : (
-                <>
-                    <h2 className="task-title">{title}</h2>
-                    <p className="task-description">{description}</p>
-                    <button onClick={() => setIsEditing(true)}>Edit</button>
-                    <button onClick={() => handleDelete(props.id)}>Delete</button>
-                    <input id="checkbox" type='checkbox' checked={completed} onChange={(e) => handleCheck(props.id, e)}></input>
-                </>
-            )}
-        </div>
+        <div className={`task ${completed ? 'completed' : ""} `} >
+            {
+                isEditing ? (
+                    <form onSubmit={handleEdit} >
+                        <input
+                            type="text"
+                            placeholder="Task title"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Task description"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                        />
+                        <button type="submit">Save</button>
+                        <button onClick={() => setIsEditing(false)}>Cancel</button>
+                    </form>
+                ) : (
+                    <>
+                        <h2 className="task-title">{title}</h2>
+                        <p className="task-description">{description}</p>
+                        <button onClick={() => setIsEditing(true)}>Edit</button>
+                        <button onClick={() => handleDelete(props.id)}>Delete</button>
+                        <input id="checkbox" type='checkbox' checked={completed} onChange={(e) => handleCheck(props.id, e)}></input>
+                    </>
+                )}
+        </div >
     )
 }

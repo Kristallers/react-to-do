@@ -21,3 +21,8 @@
     padding: 1rem;
     background-color: rgb(72, 37, 19);
 }
+
+.task.completed {
+    text-decoration: line-through;
+    color: #888;
+}
