@@ -23,10 +23,6 @@ const postNewTask = async (req, res) => {
 	}
 };
 
-// const deleteTask = async (req, res) => {
-// 	const taskID = req.params.id
-// 	console.log("dddsadkajodjowajdiajfialfdnklnlnlkn");
-// }
 const deleteTask = async (req, res) => {
 	const taskID = req.params.id;
 	try {

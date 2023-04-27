@@ -28,6 +28,7 @@ const App = () => {
 					id={item.id}
 					title={item.title}
 					description={item.description}
+					completed={item.completed}
 					tasks={backendData}
 					setTasks={setBackendData}
 				/>
