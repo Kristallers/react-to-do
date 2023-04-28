@@ -25,4 +25,5 @@
 .task.completed {
     text-decoration: line-through;
     color: #888;
+    background-color: rgb(3, 82, 39);
 }
