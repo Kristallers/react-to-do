@@ -25,8 +25,5 @@ router.delete("/tasks/:id", (req, res) => {
 	deleteTask(req, res);
 });
 
-router.delete("/tasks", (req, res) => {
-	res.send("to delete all task ");
-});
 
 module.exports = router;

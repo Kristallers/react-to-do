@@ -27,3 +27,23 @@
     color: #888;
     background-color: rgb(15 2 78);
 }
+
+.handlers-wrapper {
+    font-family: cursive;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+}
+
+.handlers-wrapper button {
+    background-color: #ECB800;
+    border-style: none;
+    color: white;
+    font-weight: 700;
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.handlers-wrapper input {
+    width: 4%;
+}

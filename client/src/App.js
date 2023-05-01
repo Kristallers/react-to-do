@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { SingleTask } from "./components/Single_Task/singleTask";
+import { NewTaskForm } from "./components/Single_Task/NewTaskform/newTaskForm";
+
 import './index.css'
 const App = () => {
 	const [backendData, setBackendData] = useState([{}]);
@@ -21,6 +23,8 @@ const App = () => {
 				<h1 >TO-DO Desk</h1>
 
 			</div>
+
+			<NewTaskForm setTasks={setBackendData} tasks={backendData} />
 
 			{backendData.map((item) => (
 				<SingleTask

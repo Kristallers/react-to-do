@@ -87,9 +87,11 @@ export const SingleTask = (props) => {
                     <>
                         <h2 className="task-title">{title}</h2>
                         <p className="task-description">{description}</p>
-                        <button onClick={() => setIsEditing(true)}>Edit</button>
-                        <button onClick={() => handleDelete(props.id)}>Delete</button>
-                        <input id="checkbox" type='checkbox' checked={completed} onChange={(e) => handleCheck(props.id, e)}></input>
+                        <div className='handlers-wrapper'>
+                            <button onClick={() => setIsEditing(true)}>Edit</button>
+                            <button onClick={() => handleDelete(props.id)}>Delete</button>
+                            <input id="checkbox" type='checkbox' checked={completed} onChange={(e) => handleCheck(props.id, e)}></input>
+                        </div>
                     </>
                 )}
         </div >
