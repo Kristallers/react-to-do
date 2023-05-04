@@ -2,7 +2,6 @@ const TaskTable = require("../models/task.model");
 
 const getAllTasks = async (req, res) => {
 	try {
-		//CRUD functions return promise , thats why i put try,catch to resolve it ..
 		const allTasks = await TaskTable.findAll();
 		res.send(allTasks);
 		console.log(allTasks);
@@ -16,7 +15,7 @@ const postNewTask = async (req, res) => {
 	console.log("Received new task request:", title);
 	try {
 		const newTask = await TaskTable.create({ title, description });
-		res.json(newTask.toJSON()); // when i added this line , TaskTable table got connected to pgadmin and i could see the table there !!!
+		res.json(newTask.toJSON());
 		console.log("new task created : ", newTask);
 		res.redirect("/tasks");
 	} catch (error) {
@@ -24,10 +23,6 @@ const postNewTask = async (req, res) => {
 	}
 };
 
-// const deleteTask = async (req, res) => {
-// 	const taskID = req.params.id
-// 	console.log("dddsadkajodjowajdiajfialfdnklnlnlkn");
-// }
 const deleteTask = async (req, res) => {
 	const taskID = req.params.id;
 	try {
@@ -49,8 +44,7 @@ const deleteTask = async (req, res) => {
 
 const updateTask = async (req, res) => {
 	const taskId = req.params.id;
-	const { title, description } = req.body;
-
+	const { title, description, completed } = req.body;
 	try {
 		const task = await TaskTable.findOne({ where: { id: taskId } });
 
@@ -61,6 +55,7 @@ const updateTask = async (req, res) => {
 
 		task.title = title || task.title;
 		task.description = description || task.description;
+		task.completed = completed || task.completed;
 
 		const updatedTask = await task.save();
 
@@ -70,5 +65,6 @@ const updateTask = async (req, res) => {
 		res.status(500).send({ message: "Internal server error" });
 	}
 };
+
 
 module.exports = { postNewTask, getAllTasks, deleteTask, updateTask };
