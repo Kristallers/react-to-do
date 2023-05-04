@@ -47,7 +47,7 @@ export const SingleTask = (props) => {
         try {
             const newCompleted = e.target.checked;
             console.log(newCompleted);
-            const response = await fetch(`/tasks/${taskID}/complete`, {
+            const response = await fetch(`/tasks/${taskID}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ completed: newCompleted }),

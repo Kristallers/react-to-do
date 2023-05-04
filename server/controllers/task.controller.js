@@ -15,7 +15,7 @@ const postNewTask = async (req, res) => {
 	console.log("Received new task request:", title);
 	try {
 		const newTask = await TaskTable.create({ title, description });
-		res.json(newTask.toJSON()); // when i added this line , TaskTable table got connected to pgadmin and i could see the table there !!!
+		res.json(newTask.toJSON());
 		console.log("new task created : ", newTask);
 		res.redirect("/tasks");
 	} catch (error) {
@@ -44,7 +44,7 @@ const deleteTask = async (req, res) => {
 
 const updateTask = async (req, res) => {
 	const taskId = req.params.id;
-	const { title, description } = req.body;
+	const { title, description, completed } = req.body;
 	try {
 		const task = await TaskTable.findOne({ where: { id: taskId } });
 
@@ -55,6 +55,7 @@ const updateTask = async (req, res) => {
 
 		task.title = title || task.title;
 		task.description = description || task.description;
+		task.completed = completed || task.completed;
 
 		const updatedTask = await task.save();
 
@@ -66,26 +67,26 @@ const updateTask = async (req, res) => {
 };
 
 
-const toggleComplete = async (req, res) => {
-	const taskId = req.params.id;
-	const { completed } = req.body;
-	try {
-		const task = await TaskTable.findOne({ where: { id: taskId } });
+// const toggleComplete = async (req, res) => {
+// 	const taskId = req.params.id;
+// 	const { completed } = req.body;
+// 	try {
+// 		const task = await TaskTable.findOne({ where: { id: taskId } });
 
-		if (!task) {
-			res.status(404).send({ message: "Task not found!" });
-			return;
-		}
+// 		if (!task) {
+// 			res.status(404).send({ message: "Task not found!" });
+// 			return;
+// 		}
 
-		task.completed = completed || task.completed;
 
-		const updatedTask = await task.save();
 
-		res.send(updatedTask);
-	} catch (error) {
-		console.error(error);
-		res.status(500).send({ message: "Internal server error" });
-	}
-}
+// 		const updatedTask = await task.save();
 
-module.exports = { postNewTask, getAllTasks, deleteTask, updateTask, toggleComplete };
+// 		res.send(updatedTask);
+// 	} catch (error) {
+// 		console.error(error);
+// 		res.status(500).send({ message: "Internal server error" });
+// 	}
+// }
+
+module.exports = { postNewTask, getAllTasks, deleteTask, updateTask };
